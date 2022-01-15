@@ -50,31 +50,31 @@ function validateInput(testInput) {
 }
 
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
-  list[0].innerHTML = `Pilot ${pilot} is ready for launch`;
-  list[1].innerHTML = ` Co-Pilot ${copilot} is ready for launch`;
+  list[0].innerText = `Pilot ${pilot} is ready for launch`;
+  list[1].innerText = ` Co-Pilot ${copilot} is ready for launch`;
   let launchStatus = document.getElementById("launchStatus");
 
 
   if (cargoLevel > 10000 && fuelLevel < 10000) {
     launchStatus.innerText = "Shuttle not ready for launch";
     launchStatus.style = "color:rgb(199, 37, 78)";
-    list[2].innerHTML = "Fuel is to low for launch";
-    list[3].innerHTML = "Cargo mass too heavy for launch";
+    list[2].innerText = "Fuel is to low for launch";
+    list[3].innerText = "Cargo mass too heavy for launch";
   } else if (fuelLevel < 10000) {
     launchStatus.innerText = "Shuttle not ready for launch";
     launchStatus.style = "color:rgb(199, 37, 78)";
-    list[2].innerHTML = "Fuel is to low for launch";
-    list[3].innerHTML = "Cargo mass low enough for launch";
+    list[2].innerText = "Fuel is to low for launch";
+    list[3].innerText = "Cargo mass low enough for launch";
   } else if (cargoLevel > 10000) {
     launchStatus.innerText = "Shuttle not ready for launch";
     launchStatus.style = "color:rgb(199, 37, 78)";
-    list[2].innerHTML = "Fuel level high enough for launch";
-    list[3].innerHTML = "Cargo mass too heavy for launch";
+    list[2].innerText = "Fuel level high enough for launch";
+    list[3].innerText = "Cargo mass too heavy for launch";
   } else {
     launchStatus.innerText = "Shuttle is Ready for Launch";
     launchStatus.style = "color:rgb(65, 159, 106)";
-    list[2].innerHTML = "Fuel level high enough for launch";
-    list[3].innerHTML = "Cargo mass low enough for launch";
+    list[2].innerText = "Fuel level high enough for launch";
+    list[3].innerText = "Cargo mass low enough for launch";
   }
 
   //final task: set visibility of list "visible"(easy way)

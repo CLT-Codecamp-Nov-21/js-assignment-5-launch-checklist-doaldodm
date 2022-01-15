@@ -24,7 +24,9 @@ window.addEventListener("load", function () {
 
     let formData = {};
     let docData = Array.from(document.getElementsByTagName("input"));
+    faultyItemsList= document.getElementById("faultyItems")
 
+    
     for (let i = 0; i < docData.length; i++) {
       let isValid = validateInput(docData[i].value);
       let tmp = docData[i];
@@ -35,6 +37,7 @@ window.addEventListener("load", function () {
         ) {
           window.alert("Make sure to enter valid information for each field!");
           formData = {};
+          faultyItemsList.style.visibility="hidden";
           return;
         } else if (
           (tmp.name === "copilotName" || tmp.name === "pilotName") &&
@@ -42,6 +45,7 @@ window.addEventListener("load", function () {
         ) {
           window.alert("Make sure to enter valid information here for each field!");
           formData = {};
+          faultyItemsList.style.visibility="hidden";
           return;
         } else {
           (tmp.name === "cargoMass" || tmp.name === "fuelLevel")?formData[tmp.name] = parseInt(tmp.value):formData[tmp.name] = tmp.value
@@ -50,6 +54,7 @@ window.addEventListener("load", function () {
       } else {
         window.alert("All fields are requiered!");
         formData = {};
+        faultyItemsList.style.visibility="hidden";
         return;
       }
     }
