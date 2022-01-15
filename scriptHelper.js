@@ -35,7 +35,8 @@ async function myFetch() {
 }
 
 function pickPlanet(planets) {
-  return planets[2]; 
+  let random = Math.floor(Math.random() * (planets.length));
+  return planets[random]; 
 }
 
 function validateInput(testInput) {
