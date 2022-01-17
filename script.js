@@ -1,16 +1,39 @@
+
 // Write your JavaScript code here!
 
-window.addEventListener("load", function() {
+window.addEventListener("load", function () {
 
-   let listedPlanets;
-   // Set listedPlanetsResponse equal to the value returned by calling myFetch()
-   let listedPlanetsResponse;
-   listedPlanetsResponse.then(function (result) {
-       listedPlanets = result;
-       console.log(listedPlanets);
-   }).then(function () {
-       console.log(listedPlanets);
-       // Below this comment call the appropriate helper functions to pick a planet fom the list of planets and add that information to your destination.
-   })
-   
+  
+  const button = document.getElementById("formSubmit");
+  let faultyItemsList = document.getElementById("faultyItems");
+  faultyItemsList.style.visibility = "hidden";
+
+  // Set listedPlanetsResponse equal to the value returned by calling myFetch()
+  let listedPlanetsResponse = myFetch();
+  listedPlanetsResponse.then(function (json) {
+    let planet = pickPlanet(json);
+    addDestinationInfo(
+      document,
+      planet.name,
+      planet.diameter,
+      planet.star,
+      planet.distance,
+      planet.moons,
+      planet.image
+    );
+  });
+
+  //
+  button.addEventListener("click", function (e) {
+    e.preventDefault();
+    let formData = Array.from(document.getElementsByTagName("input"));
+    formSubmission(
+      document,
+      faultyItemsList,
+      formData[0].value,
+      formData[1].value,
+      formData[2].value,
+      formData[3].value
+    );
+  });
 });
