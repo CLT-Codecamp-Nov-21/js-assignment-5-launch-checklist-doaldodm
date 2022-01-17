@@ -1,3 +1,4 @@
+
 // Write your JavaScript code here!
 
 window.addEventListener("load", function () {
@@ -22,14 +23,13 @@ window.addEventListener("load", function () {
     );
   });
 
+  //
   button.addEventListener("click", function (e) {
     e.preventDefault();
-    let formData = Array.from(document.getElementsByTagName("input"));;
-   
-
+    let formData = Array.from(document.getElementsByTagName("input"));
     formSubmission(
       document,
-      faultyItemsList.getElementsByTagName("li"),
+      faultyItemsList,
       formData[0].value,
       formData[1].value,
       formData[2].value,

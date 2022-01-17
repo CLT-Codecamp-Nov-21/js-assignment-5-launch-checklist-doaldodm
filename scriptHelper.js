@@ -1,4 +1,3 @@
-
 // Write your helper functions here!
 try {
   require("isomorphic-fetch");
@@ -40,10 +39,10 @@ function validateInput(testInput) {
 }
 
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
-  list[0].innerText = `Pilot ${pilot} is ready for launch`;
-  list[1].innerText = ` Co-Pilot ${copilot} is ready for launch`;
-  let launchStatus = document.getElementById("launchStatus");
 
+  let listElements=  list.getElementsByTagName("li");
+
+  let launchStatus = document.getElementById("launchStatus");
   let isValidPilot = validateInput(pilot);
   let isValidCoPilot = validateInput(copilot);
   let isValidFuelLevel = validateInput(fuelLevel);
@@ -76,29 +75,38 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     badData++;
   }
 
+  //fill faulty items list if no bad data was passed
+
+
+
   if (badData === 0) {
+    listElements[0].innerHTML = `Pilot ${pilot} is ready for launch`;
+    listElements[1].innerHTML = `Co-pilot ${copilot} is ready for launch`;
+    
+
+
     if (cargoLevel > 10000 && fuelLevel < 10000) {
-      launchStatus.innerText = "Shuttle not ready for launch";
+      launchStatus.innerHTML = "Shuttle Not Ready for Launch";
       launchStatus.style = "color:rgb(199, 37, 78)";
-      list[2].innerText = "Fuel is to low for launch";
-      list[3].innerText = "Cargo mass too heavy for launch";
+      listElements[2].innerHTML = "Fuel level too low for launch";
+      listElements[3].innerHTML = "Cargo mass too heavy for launch";
     } else if (fuelLevel < 10000) {
-      launchStatus.innerText = "Shuttle not ready for launch";
+      launchStatus.innerHTML = "Shuttle Not Ready for Launch";
       launchStatus.style = "color:rgb(199, 37, 78)";
-      list[2].innerText = "Fuel is to low for launch";
-      list[3].innerText = "Cargo mass low enough for launch";
+      listElements[2].innerHTML = "Fuel level too low for launch";
+      listElements[3].innerHTML = "Cargo mass low enough for launch";
     } else if (cargoLevel > 10000) {
-      launchStatus.innerText = "Shuttle not ready for launch";
+      launchStatus.innerHTML = "Shuttle Not Ready for Launch";
       launchStatus.style = "color:rgb(199, 37, 78)";
-      list[2].innerText = "Fuel level high enough for launch";
-      list[3].innerText = "Cargo mass too heavy for launch";
-    } else {
-      launchStatus.innerText = "Shuttle is Ready for Launch";
+      listElements[2].innerHTML = "Fuel level high enough for launch";
+      listElements[3].innerHTML = "Cargo mass too heavy for launch";
+    } else {    
+      launchStatus.innerHTML = "Shuttle is Ready for Launch";
       launchStatus.style = "color:rgb(65, 159, 106)";
-      list[2].innerText = "Fuel level high enough for launch";
-      list[3].innerText = "Cargo mass low enough for launch";
+      listElements[2].innerHTML = "Fuel level high enough for launch";
+      listElements[3].innerHTML = "Cargo mass low enough for launch";
     }
-    document.getElementById("faultyItems").style = "visibility: visible";
+    list.style = "visibility: visible";
   }
 }
 
@@ -126,8 +134,6 @@ try {
   module.exports.pickPlanet = pickPlanet;
   module.exports.myFetch = myFetch;
 } catch (error) {}
-
-
 
 
 
